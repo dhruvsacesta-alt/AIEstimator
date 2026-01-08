@@ -45,7 +45,7 @@ const AdminDashboard = () => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             {/* Stats Grid */}
-            <div className="grid grid-cols-4 lg:grid-cols-2 md:grid-cols-1" style={{ gap: '1.5rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }} className="md:grid-cols-1">
                 {stats.map((s, i) => (
                     <div
                         key={i}
