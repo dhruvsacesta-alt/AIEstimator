@@ -1,10 +1,17 @@
 import axios from 'axios';
 
+const getBaseURL = () => {
+    let url = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+    if (!url.endsWith('/')) url += '/';
+    if (!url.includes('/api/')) url += 'api/';
+    return url;
+};
+
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+    baseURL: getBaseURL(),
 });
 
-export const BACKEND_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replace('/api', '');
+export const BACKEND_URL = getBaseURL().replace('/api/', '');
 
 // Interceptor for JWT
 api.interceptors.request.use((config) => {
