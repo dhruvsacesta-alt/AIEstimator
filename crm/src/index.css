@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --sidebar-width: 260px;
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --primary: #1d4ed8;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  background: var(--bg-main);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+/* Responsive Utilities */
+.grid {
+  display: grid;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1024px) {
+  .sidebar-active main {
+    padding: 1.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --sidebar-width: 0px;
+  }
+
+  aside {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  aside.open {
+    transform: translateX(0);
+    width: 260px !important;
+  }
+
+  main {
+    margin-left: 0 !important;
+    padding: 1rem !important;
+  }
+
+  header {
+    padding: 1rem !important;
+  }
+
+  .mobile-stack {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+
+  .mobile-hide {
+    display: none !important;
+  }
+
+  .mobile-show {
+    display: block !important;
+  }
+
+  .desktop-hide {
+    display: block !important;
+  }
+
+  .overflow-x-auto {
+    overflow-x: auto;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-show {
+    display: none !important;
+  }
+
+  .desktop-hide {
+    display: none !important;
+  }
+}
