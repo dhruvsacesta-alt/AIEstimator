@@ -44,19 +44,90 @@ const SalesDashboard = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
+            {/* Stats Grid */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }} className="grid-cols-4 lg:grid-cols-2 md:grid-cols-1">
                 {stats.map((s, i) => (
-                    <Card key={i}>
-                        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                            <div style={{ background: `${s.color}10`, color: s.color, width: '45px', height: '45px', borderRadius: '12px', display: 'grid', placeItems: 'center' }}>
+                    <div
+                        key={i}
+                        style={{
+                            background: 'white',
+                            padding: '1.5rem',
+                            borderRadius: '16px',
+                            border: '1px solid #e2e8f0',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '1.25rem',
+                            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                            cursor: 'default',
+                            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
+                            position: 'relative',
+                            overflow: 'hidden'
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = 'translateY(-5px)';
+                            e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = 'translateY(0)';
+                            e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.05)';
+                        }}
+                    >
+                        {/* Decorative Background Element */}
+                        <div style={{
+                            position: 'absolute',
+                            top: '-10px',
+                            right: '-10px',
+                            width: '60px',
+                            height: '60px',
+                            background: `${s.color}08`,
+                            borderRadius: '50%',
+                            zIndex: 0
+                        }} />
+
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative', zIndex: 1 }}>
+                            <div style={{
+                                background: `${s.color}15`,
+                                padding: '12px',
+                                borderRadius: '12px',
+                                color: s.color,
+                                border: `1px solid ${s.color}25`,
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}>
                                 {s.icon}
                             </div>
-                            <div>
-                                <div style={{ fontSize: '0.85rem', fontWeight: '600', color: '#64748b' }}>{s.label}</div>
-                                <div style={{ fontSize: '1.5rem', fontWeight: '800', color: '#0f172a' }}>{s.value}</div>
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '4px',
+                                padding: '4px 8px',
+                                borderRadius: '8px',
+                                background: '#f8fafc',
+                                border: '1px solid #f1f5f9',
+                                fontSize: '0.7rem',
+                                fontWeight: '700',
+                                color: '#64748b'
+                            }}>
+                                <TrendingUp size={12} color="#10b981" />
+                                <span>Active</span>
                             </div>
                         </div>
-                    </Card>
+
+                        <div style={{ position: 'relative', zIndex: 1 }}>
+                            <div style={{ fontSize: '0.8125rem', fontWeight: '700', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.025em', marginBottom: '4px' }}>
+                                {s.label}
+                            </div>
+                            <div style={{ fontSize: '2rem', fontWeight: '800', color: '#0f172a', lineHeight: 1 }}>
+                                {s.value}
+                            </div>
+                        </div>
+
+                        <div style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: '500', position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                            <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981' }} />
+                            Live Statistics
+                        </div>
+                    </div>
                 ))}
             </div>
 

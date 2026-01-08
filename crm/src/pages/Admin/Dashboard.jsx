@@ -47,18 +47,60 @@ const AdminDashboard = () => {
             {/* Stats Grid */}
             <div className="grid grid-cols-4 lg:grid-cols-2 md:grid-cols-1" style={{ gap: '1.5rem' }}>
                 {stats.map((s, i) => (
-                    <Card key={i}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                            <div>
-                                <div style={{ fontSize: '0.8125rem', fontWeight: '700', color: '#64748b', marginBottom: '8px' }}>{s.label}</div>
-                                <div style={{ fontSize: '1.75rem', fontWeight: '800', color: '#0f172a' }}>{s.value}</div>
-                                <div style={{ fontSize: '0.75rem', fontWeight: '600', color: '#10b981', marginTop: '4px' }}>{s.trend}</div>
-                            </div>
-                            <div style={{ background: '#f8fafc', padding: '10px', borderRadius: '12px', border: '1px solid #e2e8f0', color: '#1d4ed8' }}>
+                    <div
+                        key={i}
+                        style={{
+                            background: 'white',
+                            padding: '1.5rem',
+                            borderRadius: '16px',
+                            border: '1px solid #e2e8f0',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '1rem',
+                            transition: 'all 0.3s ease',
+                            cursor: 'default',
+                            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)'
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = 'translateY(-4px)';
+                            e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1)';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = 'translateY(0)';
+                            e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.05)';
+                        }}
+                    >
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <div style={{
+                                background: `${s.color}15`,
+                                padding: '12px',
+                                borderRadius: '12px',
+                                color: s.color,
+                                border: `1px solid ${s.color}30`
+                            }}>
                                 {s.icon}
                             </div>
+                            <div style={{
+                                padding: '4px 10px',
+                                borderRadius: '20px',
+                                background: '#f0fdf4',
+                                color: '#10b981',
+                                fontSize: '0.7rem',
+                                fontWeight: '700',
+                                border: '1px solid #d1fae5'
+                            }}>
+                                {s.trend.startsWith('↑') ? 'Growing' : 'Steady'}
+                            </div>
                         </div>
-                    </Card>
+                        <div>
+                            <div style={{ fontSize: '1.75rem', fontWeight: '800', color: '#0f172a', marginBottom: '2px', letterSpacing: '-0.025em' }}>{s.value}</div>
+                            <div style={{ fontSize: '0.875rem', fontWeight: '600', color: '#64748b' }}>{s.label}</div>
+                        </div>
+                        <div style={{ height: '1px', background: '#f1f5f9', width: '100%' }} />
+                        <div style={{ fontSize: '0.75rem', fontWeight: '500', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                            <TrendingUp size={12} /> {s.trend}
+                        </div>
+                    </div>
                 ))}
             </div>
 
