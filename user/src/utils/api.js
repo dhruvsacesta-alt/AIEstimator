@@ -9,7 +9,7 @@ const api = axios.create({
  * @param {FormData} data - The multipart form data prepared by the caller.
  */
 export const submitAssessment = async (data) => {
-    const response = await api.post('/leads/assessments', data, {
+    const response = await api.post('leads/assessments', data, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
